@@ -31,7 +31,7 @@ public class Main {
                     break;
             }
             System.out.println();
-        } while (opcion != 1000);
-        sc.close();
+        } while (true);
+
     }
 }
