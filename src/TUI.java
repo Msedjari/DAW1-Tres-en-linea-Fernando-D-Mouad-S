@@ -52,6 +52,9 @@ public class TUI {
     private static void configuracion(){
 
     }
+    private static void opcionEscogida(){
+
+    }
 
 }
 

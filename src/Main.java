@@ -5,7 +5,4 @@ public class Main {
         TUI TUI = new TUI();
         TUI.start();
     }
-    private static void opcionEscogida(){
-
-    }
 }
