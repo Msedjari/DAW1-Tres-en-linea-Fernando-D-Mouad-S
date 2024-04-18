@@ -38,4 +38,12 @@ public class Main {
     private static void salir() {
         System.exit(0);
     }
+    private static void nuevaPartida(){
+    }
+    private static void cargarPartida(){
+
+    }
+    private static void configuracion(){
+
+    }
 }
