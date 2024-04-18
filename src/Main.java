@@ -3,10 +3,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.println("1.Nueva partida");
+        System.out.println("2.Cargar partida");
+        System.out.println("3.Configuracion");
+        System.out.println("4.Salir");
+
         int entradaUsaurio = sc.nextInt();
+
         switch (entradaUsaurio) {
             case 1:
-                System.out.println("1.Nueva Prtida");
+                System.out.println("1.Nueva partida");
                 break;
             case 2:
                 System.out.println("2.Cargar partida");
