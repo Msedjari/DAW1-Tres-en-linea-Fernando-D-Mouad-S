@@ -25,6 +25,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Ha seleccionado: Salir");
+                    salir();
                     break;
                 default:
                     System.out.println("Opción no válida. Por favor, seleccione una opción del menú.");
@@ -32,6 +33,9 @@ public class Main {
             }
             System.out.println();
         } while (true);
+    }
 
+    private static void salir() {
+        System.exit(0);
     }
 }
