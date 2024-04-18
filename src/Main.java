@@ -46,4 +46,7 @@ public class Main {
     private static void configuracion(){
 
     }
+    private static void opcionEscogida(){
+
+    }
 }
