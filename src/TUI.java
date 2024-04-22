@@ -47,20 +47,26 @@ public class TUI {
         sc.close();
     }
     private static void salir() {
+        System.out.println("Saliendo del programa. ¡Hasta luego!");
         System.exit(0);
     }
     private static void nuevaPartida(){
+        System.out.println("Iniciando nueva partida...");
     }
+
     private static void cargarPartida(){
+        System.out.println("Cargando partida...");
 
     }
     private static void configuracion(){
-
+        System.out.println("Accediendo a la configuración...");
     }
     private static void lanzarMenu(){
         // Esta funcion debe lanzar el menu y devolver la opcion escogida.
         // Cambiar el nombre a uno que describa mejor que hace el programa.
     }
 
+
 }
+
 
