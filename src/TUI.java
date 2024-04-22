@@ -29,38 +29,37 @@ public class TUI {
     private static void configuracion(){
         System.out.println("Accediendo a la configuración...");
     }
-    private static void lanzarMenu(){
-        // Esta funcion debe lanzar el menu y devolver la opcion escogida.
-        // Cambiar el nombre a uno que describa mejor que hace el programa.
-            System.out.println("1.Nueva partida");
-            System.out.println("2.Cargar partida");
-            System.out.println("3.Configuracion");
-            System.out.println("4.Salir");
+    private static void lanzarMenu() {
+        System.out.println("Elige una opcion:");
+        System.out.println("1.Nueva partida");
+        System.out.println("2.Cargar partida");
+        System.out.println("3.Configuracion");
+        System.out.println("4.Salir");
 
-            int opcion = sc.nextInt();
-            sc.nextLine();
+        int opcion = sc.nextInt();
+        sc.nextLine();
 
-            switch (opcion) {
-                case 1:
-                    System.out.println("Ha seleccionado: Nueva partida");
-                    nuevaPartida();
-                    break;
-                case 2:
-                    System.out.println("Ha seleccionado: Cargar partida");
-                    cargarPartida();
-                    break;
-                case 3:
-                    System.out.println("Ha seleccionado :Configuracion");
-                    configuracion();
-                    break;
-                case 4:
-                    System.out.println("Ha seleccionado: Salir");
-                    salir();
-                    break;
-                default:
-                    System.out.println("Opción no válida. Por favor, seleccione una opción del menú.");
-                    break;
-            }
+        switch (opcion) {
+            case 1:
+                System.out.println("Ha seleccionado: Nueva partida");
+                nuevaPartida();
+                break;
+            case 2:
+                System.out.println("Ha seleccionado: Cargar partida");
+                cargarPartida();
+                break;
+            case 3:
+                System.out.println("Ha seleccionado :Configuracion");
+                configuracion();
+                break;
+            case 4:
+                System.out.println("Ha seleccionado: Salir");
+                salir();
+                break;
+            default:
+                System.out.println("Opción no válida. Por favor, seleccione una opción del menú.");
+                break;
+        }
     }
 
 
