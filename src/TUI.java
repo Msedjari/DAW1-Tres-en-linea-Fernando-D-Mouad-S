@@ -57,8 +57,9 @@ public class TUI {
     private static void configuracion(){
 
     }
-    private static void opcionEscogida(){
-
+    private static void lanzarMenu(){
+        // Esta funcion debe lanzar el menu y devolver la opcion escogida.
+        // Cambiar el nombre a uno que describa mejor que hace el programa.
     }
 
 }
