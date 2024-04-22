@@ -3,9 +3,14 @@ import java.util.Scanner;
 public class TUI {
     private Scanner sc;
 
-    public void texTUI() {
+    public TUI() {
         sc = new Scanner(System.in);
     }
+
+    public TUI(Scanner sc) {
+        this.sc = sc;
+    }
+
     public void start() {
         boolean inicio = true;
         while (inicio){
@@ -38,8 +43,8 @@ public class TUI {
                     System.out.println("Opción no válida. Por favor, seleccione una opción del menú.");
                     break;
             }
-            sc.close();
         }
+        sc.close();
     }
     private static void salir() {
         System.exit(0);
