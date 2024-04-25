@@ -24,16 +24,16 @@ public class Main {
                 break;
         }
     }
-    private void novaPartida(){
+    private static void novaPartida(){
         throw new NotImplementedException();
     }
-    private void carregarPartida(){
+    private static void carregarPartida(){
         throw new NotImplementedException();
     }
-    private void configuracio(){
+    private static void configuracio(){
         throw new NotImplementedException();
     }
-    private void sortir(){
+    private static void sortir(){
         System.exit(0);
         throw new NotImplementedException();
     }
