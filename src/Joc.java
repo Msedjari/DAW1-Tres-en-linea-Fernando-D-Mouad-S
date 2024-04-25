@@ -1,11 +1,11 @@
-import jdk.jshell.spi.ExecutionControl;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Joc {
 
-    private char [][] tablero;
+    private char [][] taullel;
 
     public char[][] getTablero() {
-        return tablero;
+        return taullel;
     }
 
     public short getTorn() {
@@ -15,17 +15,14 @@ public class Joc {
     private short torn;
 
     public void novaPartida(){
-        throw new ExecutionControl.NotImplementedException();
+        throw new NotImplementedException();
     }
-    public void jugar(){
-
+    public void jugar(short fila,String columna){
+        throw new NotImplementedException();
+    }
+    public boolean jugadaGuanyador(short fila,String columna){
+        throw new NotImplementedException();
 
     }
-    public boolean jugadaGuanyador(){
-
-    }
-
-
-
 
 }
