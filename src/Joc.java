@@ -1,18 +1,17 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Joc {
+    private  short torn;
 
     private char [][] taullel;
 
-    public char[][] getTablero() {
+    public char[][] getTaullel() {
         return taullel;
     }
 
     public short getTorn() {
         return torn;
     }
-
-    private short torn;
 
     public void novaPartida(){
         throw new NotImplementedException();
