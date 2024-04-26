@@ -16,8 +16,8 @@ public class Joc {
     public void novaPartida(){
         torn = 1;
         char[][] taulellGenerat = new char[3][3];
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
+        for(int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 taulellGenerat[i][j] = '_';
             }
         }
