@@ -44,11 +44,11 @@ class JocTest {
 
 
     //realizar la jugada
-        joc.jugar((short) 0, "X");
+        joc.jugar((short) 0, "0");
 
 
    //verificar que la ficha se ha colocado en la primera casilla
-        assertEquals('_',joc.getTaulell()[0][0]);
+        assertEquals('X',joc.getTaulell()[0][0]);
 
     }
 }
