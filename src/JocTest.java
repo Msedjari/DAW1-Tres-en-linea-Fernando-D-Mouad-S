@@ -48,7 +48,7 @@ class JocTest {
 
 
    //verificar que la ficha se ha colocado en la primera casilla
-        assertEquals(' ',joc.getTaulell()[0][0]);
+        assertEquals('_',joc.getTaulell()[0][0]);
 
     }
 }
