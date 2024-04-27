@@ -3,7 +3,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class Main {
     public static void main(String[] args) {
         TUI tui = new TUI();
-        Joc joc = new Joc();
         int opcion = tui.mostrarMenu();
 
         switch (opcion) {
@@ -25,7 +24,10 @@ public class Main {
         }
     }
     private static void novaPartida(){
-        throw new NotImplementedException();
+        Joc joc = new Joc();
+        TUI tui = new TUI();
+        joc.novaPartida();
+        tui.mostrarTaulell(joc.getTaulell(), joc.getTorn());
     }
     private static void carregarPartida(){
         throw new NotImplementedException();
