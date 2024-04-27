@@ -40,7 +40,7 @@ class JocTest {
         joc.novaPartida();
 
    //verificar que la casilla esta vacia antes de jugar
-        assertEquals(' ',joc.getTaulell()[0][0]);
+        assertEquals('_',joc.getTaulell()[0][0]);
 
 
     //realizar la jugada
