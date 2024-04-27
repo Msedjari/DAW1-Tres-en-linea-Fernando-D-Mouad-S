@@ -24,11 +24,12 @@ public class Joc {
         taulell = taulellGenerat;
     }
     public void jugar(short fila,String columna){
-        throw new NotImplementedException();
+        char ficha = (torn == 1) ? 'X' : 'O' ;
+        taulell[fila][Integer.parseInt(columna)] =  ficha; //indicar la fila y la columna donde se colocara la fitcha
+        torn = (short) ((torn == 1) ? 2 : 1); //pasar al siguente turno
     }
     public boolean jugadaGuanyador(short fila,String columna){
         throw new NotImplementedException();
-
     }
 
 }
