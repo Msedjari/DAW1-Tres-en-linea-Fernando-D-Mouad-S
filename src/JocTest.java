@@ -42,10 +42,8 @@ class JocTest {
    //verificar que la casilla esta vacia antes de jugar
         assertEquals('_',joc.getTaulell()[0][0]);
 
-
     //realizar la jugada
         joc.jugar((short) 0, "0");
-
 
    //verificar que la ficha se ha colocado en la primera casilla
         assertEquals('X',joc.getTaulell()[0][0]);
