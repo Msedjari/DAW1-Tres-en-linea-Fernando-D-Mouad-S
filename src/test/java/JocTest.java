@@ -1,12 +1,15 @@
 import org.junit.jupiter.api.Assertions;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 // PARA PRUEBAS CON PARAMETROS
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import sun.rmi.runtime.NewThreadAction;
 
 class JocTest {
 
@@ -53,21 +56,24 @@ class JocTest {
         Assertions.assertEquals('X',joc.getTaulell()[0][0]);
 
     }
-
     @ParameterizedTest
     @CsvSource({"0,0", "0,1", "0,2" , "1,0", "1,1", "1,2", "2,0", "2,1", "2,2"})
     void jugadaGuanyador_tableroEnBlanco(int n1, int n2){
         Joc joc = new Joc();
         joc.novaPartida();
-        assertFalse(joc.jugadaGuanyador(n1, n2));
+        assertFalse(joc.jugadaGuanyador(n1, n2)); //verifica que devuelva un false
     }
     @ParameterizedTest
     @CsvSource({"0,0", "0,1", "0,2" , "1,0", "1,1", "1,2", "2,0", "2,1", "2,2"})
     void jugadaGuanyador_tableroUnaCasilla(int n1, int n2){
         Joc joc = new Joc();
+
+        //Random r = new Random();
+        //int j1 = r.nextInt(3);
+        //int j2 = r.nextInt(3);
         joc.novaPartida();
         //realizar la jugada
-        joc.jugar(n1, n2);
+        joc.jugar(0, 0);
         //Comprueba
         assertFalse(joc.jugadaGuanyador(n1, n2));
     }

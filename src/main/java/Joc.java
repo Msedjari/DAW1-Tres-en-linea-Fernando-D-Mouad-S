@@ -24,13 +24,19 @@ public class Joc {
         taulell = taulellGenerat;
     }
     public void jugar(int fila,int columna){
-        char ficha = (torn == 1) ? 'X' : 'O' ;
+        char ficha = (torn == 1) ? 'X' : 'O' ; // Selecciona la ficha segun el turno 1 = X, 2 = O
         taulell[fila][columna] =  ficha; //indicar la fila y la columna donde se colocara la fitcha
-        torn = (short) ((torn == 1) ? 2 : 1); //pasar al siguente turno
+        torn = ((torn == 1) ? 2 : 1); //pasar al siguente turno
     }
     public boolean jugadaGuanyador(int fila,int columna){
 
-        throw new NotImplementedException();
+        //EN PRODUCCION
+        if (torn == 1){
+            return taulell[fila][columna] == 'X';
+        } else {
+            return taulell[fila][columna] == 'O';
+        }
+
     }
 
 }
