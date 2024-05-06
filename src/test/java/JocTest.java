@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// PARA PRUEBAS CON PARAMETROS
+//import org.junit.jupiter.params.ParameterizedTest;
+//import org.junit.jupiter.params.provider.CsvSource;
+
 class JocTest {
 
     @org.junit.jupiter.api.Test
@@ -40,13 +44,19 @@ class JocTest {
         joc.novaPartida();
 
    //verificar que la casilla esta vacia antes de jugar
-        assertEquals('_',joc.getTaulell()[0][0]);
+        Assertions.assertEquals('_',joc.getTaulell()[0][0]);
 
     //realizar la jugada
-        joc.jugar((short) 0, "0");
+        joc.jugar((short) 0, 0);
 
    //verificar que la ficha se ha colocado en la primera casilla
-        assertEquals('X',joc.getTaulell()[0][0]);
+        Assertions.assertEquals('X',joc.getTaulell()[0][0]);
 
+    }
+    @org.junit.jupiter.api.Test
+    void jugadaGuanyador(){
+        Joc joc = new Joc();
+
+        Assertions.assertEquals(false, joc.jugadaGuanyador( 0,0));
     }
 }

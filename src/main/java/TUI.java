@@ -13,7 +13,7 @@ public class TUI {
 
         return sc.nextInt();
     }
-    public void mostrarTaulell(char[][] taulell, short torn){
+    public void mostrarTaulell(char[][] taulell, int torn){
         System.out.println("Torn: Jugador " + torn);
         for(int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -23,10 +23,10 @@ public class TUI {
         }
 
     }
-    public short[] recollirJugada(){
+    public int[] recollirJugada(){
         throw new NotImplementedException();
     }
-    public void fiDePartida(short guanyador){
+    public void fiDePartida(int guanyador){
         throw new NotImplementedException();
     }
 }

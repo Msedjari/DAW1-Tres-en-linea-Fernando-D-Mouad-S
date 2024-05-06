@@ -1,7 +1,7 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Joc {
-    private  short torn;
+    private  int torn;
 
     private char [][] taulell;
 
@@ -9,7 +9,7 @@ public class Joc {
         return taulell;
     }
 
-    public short getTorn() {
+    public int getTorn() {
         return torn;
     }
 
@@ -23,12 +23,12 @@ public class Joc {
         }
         taulell = taulellGenerat;
     }
-    public void jugar(short fila,String columna){
+    public void jugar(int fila,int columna){
         char ficha = (torn == 1) ? 'X' : 'O' ;
-        taulell[fila][Integer.parseInt(columna)] =  ficha; //indicar la fila y la columna donde se colocara la fitcha
+        taulell[fila][columna] =  ficha; //indicar la fila y la columna donde se colocara la fitcha
         torn = (short) ((torn == 1) ? 2 : 1); //pasar al siguente turno
     }
-    public boolean jugadaGuanyador(short fila,String columna){
+    public boolean jugadaGuanyador(int fila,int columna){
         throw new NotImplementedException();
     }
 
