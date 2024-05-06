@@ -68,12 +68,12 @@ class JocTest {
     void jugadaGuanyador_tableroUnaCasilla(int n1, int n2){
         Joc joc = new Joc();
 
-        //Random r = new Random();
-        //int j1 = r.nextInt(3);
-        //int j2 = r.nextInt(3);
+        Random r = new Random();
+        int j1 = r.nextInt(3);
+        int j2 = r.nextInt(3);
         joc.novaPartida();
         //realizar la jugada
-        joc.jugar(0, 0);
+        joc.jugar(j1, j2);
         //Comprueba
         assertFalse(joc.jugadaGuanyador(n1, n2));
     }
@@ -99,18 +99,18 @@ class JocTest {
         Joc joc = new Joc();
         joc.novaPartida();
         //realizar la jugada de J1
-        joc.jugar(0, 0);
+        joc.jugar(0, 1);
         //realizar la jugada de J2
-        joc.jugar(2, 0);
+        joc.jugar(0, 0);
         //realizar la jugada de J1
         joc.jugar(0, 2);
         //realizar la jugada de J2
-        joc.jugar(2, 1);
-        //realizar la jugada de J1
         joc.jugar(1, 1);
+        //realizar la jugada de J1
+        joc.jugar(1, 0);
         //realizar la jugada de J2
-        joc.jugar(2, 1);
+        joc.jugar(2, 2);
         //Comprueba
-        assertFalse(joc.jugadaGuanyador(0, 2));
+        assertFalse(joc.jugadaGuanyador(2, 2));
     }
 }

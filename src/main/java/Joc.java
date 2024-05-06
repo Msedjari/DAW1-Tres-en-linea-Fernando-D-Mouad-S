@@ -30,12 +30,21 @@ public class Joc {
     }
     public boolean jugadaGuanyador(int fila,int columna){
 
-        //EN PRODUCCION
-        if (torn == 1){
-            return taulell[fila][columna] == 'X';
-        } else {
-            return taulell[fila][columna] == 'O';
+        char ficha = (torn == 1) ? 'X' : 'O' ;
+        // Verificar si hay una línea ganadora en la fila actual
+        if (taulell[fila][0] == ficha && taulell[fila][1] == ficha && taulell[fila][2] == ficha) {
+            return true; // Línea horizontal
         }
+        // Verificar si hay una línea ganadora en la columna actual
+        if (taulell[0][columna] == ficha && taulell[1][columna] == ficha && taulell[2][columna] == ficha) {
+            return true; // Línea vertical
+        }
+        // Verificar si hay una línea ganadora en la diagonal
+        if (fila == columna && taulell[0][0] == ficha && taulell[1][1] == ficha && taulell[2][2] == ficha) {
+            return true; // Diagonal principal
+        }
+        // Verificar si hay una línea ganadora en la diagonal inversa
+        return fila + columna == 2 && taulell[0][2] == ficha && taulell[1][1] == ficha && taulell[2][0] == ficha; // Diagonal secundaria
 
     }
 
