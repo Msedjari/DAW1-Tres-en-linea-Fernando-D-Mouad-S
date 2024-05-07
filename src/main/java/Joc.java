@@ -29,6 +29,7 @@ public class Joc {
         torn = (short) ((torn == 1) ? 2 : 1); //pasar al siguente turno
     }
     public boolean jugadaGuanyador(int fila,int columna){
+
         throw new NotImplementedException();
     }
 

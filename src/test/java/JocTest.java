@@ -1,14 +1,12 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 // PARA PRUEBAS CON PARAMETROS
-//import org.junit.jupiter.params.ParameterizedTest;
-//import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class JocTest {
 
@@ -69,14 +67,65 @@ class JocTest {
         //realizar la jugada
         joc.jugar(fila,columna);
 
+   //verificar que la ficha se ha colocado en la primera casilla
+        Assertions.assertEquals('X',joc.getTaulell()[0][0]);
+
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0,0", "0,1", "0,2" , "1,0", "1,1", "1,2", "2,0", "2,1", "2,2"})
+    void jugadaGuanyador_tableroEnBlanco(int n1, int n2){
+        Joc joc = new Joc();
+        joc.novaPartida();
+        assertFalse(joc.jugadaGuanyador(n1, n2));
+    }
+    @ParameterizedTest
+    @CsvSource({"0,0", "0,1", "0,2" , "1,0", "1,1", "1,2", "2,0", "2,1", "2,2"})
+    void jugadaGuanyador_tableroUnaCasilla(int n1, int n2){
+        Joc joc = new Joc();
+        joc.novaPartida();
+        //realizar la jugada
+        joc.jugar(n1, n2);
+        //Comprueba
+        assertFalse(joc.jugadaGuanyador(n1, n2));
         //verificar que la ficha se ha colocado en la primera casilla
         Assertions.assertEquals('O',joc.getTaulell()[fila][columna]);
     }
     @org.junit.jupiter.api.Test
-    void jugadaGuanyador(){
+    void jugadaGuanyador_tableroJugadaGuanyadoraJ1(){
         Joc joc = new Joc();
-
-        Assertions.assertEquals(false, joc.jugadaGuanyador( 0,0));
+        joc.novaPartida();
+        //realizar la jugada de J1
+        joc.jugar(0, 0);
+        //realizar la jugada de J2
+        joc.jugar(2, 0);
+        //realizar la jugada de J1
+        joc.jugar(0, 1);
+        //realizar la jugada de J2
+        joc.jugar(2, 1);
+        //realizar la jugada de J1
+        joc.jugar(0, 2);
+        //Comprueba
+        assertFalse(joc.jugadaGuanyador(0, 2));
+    }
+    @org.junit.jupiter.api.Test
+    void jugadaGuanyador_tableroJugadaGuanyadoraJ2(){
+        Joc joc = new Joc();
+        joc.novaPartida();
+        //realizar la jugada de J1
+        joc.jugar(0, 0);
+        //realizar la jugada de J2
+        joc.jugar(2, 0);
+        //realizar la jugada de J1
+        joc.jugar(0, 2);
+        //realizar la jugada de J2
+        joc.jugar(2, 1);
+        //realizar la jugada de J1
+        joc.jugar(1, 1);
+        //realizar la jugada de J2
+        joc.jugar(2, 1);
+        //Comprueba
+        assertFalse(joc.jugadaGuanyador(0, 2));
     }
 
 
