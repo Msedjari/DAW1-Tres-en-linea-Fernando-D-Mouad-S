@@ -95,7 +95,7 @@ class JocTest {
         //Comprueba
         assertFalse(joc.jugadaGuanyador(n1, n2));
         //verificar que la ficha se ha colocado en la primera casilla
-        Assertions.assertEquals('O',joc.getTaulell()[fila][columna]);
+        Assertions.assertEquals('O',joc.getTaulell()[n1][n2]);
     }
     @org.junit.jupiter.api.Test
     void jugadaGuanyador_tableroJugadaGuanyadoraJ1(){
