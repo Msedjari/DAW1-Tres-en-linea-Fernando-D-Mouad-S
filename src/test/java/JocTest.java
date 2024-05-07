@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
@@ -37,8 +39,9 @@ class JocTest {
 
     }
 
-    @org.junit.jupiter.api.Test
-    void jugar() {
+    @ParameterizedTest
+    @CsvSource({"0,0" , "0,1" , "0,2" ,"1,0" , "1,1" , "1,2" ,"2,0" , "2,1" , "2,2"  })
+    void jugar_1(short fila,int columna) {
 
         Joc joc = new Joc();
         joc.novaPartida();
@@ -47,11 +50,27 @@ class JocTest {
         Assertions.assertEquals('_',joc.getTaulell()[0][0]);
 
     //realizar la jugada
-        joc.jugar((short) 0, 0);
+        joc.jugar(fila,columna);
 
    //verificar que la ficha se ha colocado en la primera casilla
-        Assertions.assertEquals('X',joc.getTaulell()[0][0]);
+        Assertions.assertEquals('X',joc.getTaulell()[fila][columna]);
 
+    }
+    @ParameterizedTest
+    @CsvSource({"0,0" , "0,1" , "0,2" ,"1,0" , "1,1" , "1,2" ,"2,0" , "2,1" , "2,2"  })
+    void jugar_2(short fila,int columna) {
+
+        Joc joc = new Joc();
+        joc.novaPartida();
+
+        //verificar que la casilla esta vacia antes de jugar
+        Assertions.assertEquals('_',joc.getTaulell()[fila][columna]);
+
+        //realizar la jugada
+        joc.jugar(fila,columna);
+
+        //verificar que la ficha se ha colocado en la primera casilla
+        Assertions.assertEquals('O',joc.getTaulell()[fila][columna]);
     }
     @org.junit.jupiter.api.Test
     void jugadaGuanyador(){
@@ -59,4 +78,6 @@ class JocTest {
 
         Assertions.assertEquals(false, joc.jugadaGuanyador( 0,0));
     }
+
+
 }
