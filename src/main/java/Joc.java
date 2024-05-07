@@ -24,13 +24,28 @@ public class Joc {
         taulell = taulellGenerat;
     }
     public void jugar(int fila,int columna){
-        char ficha = (torn == 1) ? 'X' : 'O' ;
+        char ficha = (torn == 1) ? 'X' : 'O' ; // Selecciona la ficha segun el turno 1 = X, 2 = O
         taulell[fila][columna] =  ficha; //indicar la fila y la columna donde se colocara la fitcha
-        torn = (short) ((torn == 1) ? 2 : 1); //pasar al siguente turno
+        torn = ((torn == 1) ? 2 : 1); //pasar al siguente turno
     }
     public boolean jugadaGuanyador(int fila,int columna){
 
-        throw new NotImplementedException();
+        char ficha = (torn == 1) ? 'X' : 'O' ;
+        // Verificar si hay una línea ganadora en la fila actual
+        if (taulell[fila][0] == ficha && taulell[fila][1] == ficha && taulell[fila][2] == ficha) {
+            return true; // Línea horizontal
+        }
+        // Verificar si hay una línea ganadora en la columna actual
+        if (taulell[0][columna] == ficha && taulell[1][columna] == ficha && taulell[2][columna] == ficha) {
+            return true; // Línea vertical
+        }
+        // Verificar si hay una línea ganadora en la diagonal
+        if (fila == columna && taulell[0][0] == ficha && taulell[1][1] == ficha && taulell[2][2] == ficha) {
+            return true; // Diagonal principal
+        }
+        // Verificar si hay una línea ganadora en la diagonal inversa
+        return fila + columna == 2 && taulell[0][2] == ficha && taulell[1][1] == ficha && taulell[2][0] == ficha; // Diagonal secundaria
+
     }
 
 }
