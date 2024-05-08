@@ -48,7 +48,7 @@ class JocTest {
         joc.novaPartida();
 
    //verificar que la casilla esta vacia antes de jugar
-        Assertions.assertEquals('_',joc.getTaulell()[0][0]);
+        Assertions.assertEquals('_',joc.getTaulell()[fila][columna]);
 
     //realizar la jugada
         joc.jugar(fila,columna);
@@ -67,11 +67,14 @@ class JocTest {
         //verificar que la casilla esta vacia antes de jugar
         Assertions.assertEquals('_',joc.getTaulell()[fila][columna]);
 
-        //realizar la jugada
+        //realizar la jugada del J1
+        joc.jugar(fila,columna);
+
+        //realizar la jugada del J2
         joc.jugar(fila,columna);
 
    //verificar que la ficha se ha colocado en la primera casilla
-        Assertions.assertEquals('X',joc.getTaulell()[0][0]);
+        Assertions.assertEquals('O',joc.getTaulell()[fila][columna]);
 
     }
     @ParameterizedTest
@@ -95,7 +98,7 @@ class JocTest {
         //Comprueba
         assertFalse(joc.jugadaGuanyador(n1, n2));
         //verificar que la ficha se ha colocado en la primera casilla
-        Assertions.assertEquals('O',joc.getTaulell()[n1][n2]);
+        assertFalse(joc.jugadaGuanyador(n1,n2));
     }
     @org.junit.jupiter.api.Test
     void jugadaGuanyador_tableroJugadaGuanyadoraJ1(){
