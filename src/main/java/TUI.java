@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class TUI {
     private Scanner sc = new Scanner(System.in);
 
-    public int mostrarMenu() {
+    public int mostrarMenuPrincipal() {
         System.out.println("Elige una opcion:");
         System.out.println("1.Nueva partida");
         System.out.println("2.Cargar partida");
@@ -13,6 +13,17 @@ public class TUI {
 
         return sc.nextInt();
     }
+    public int mostrarMenuConfiguracion(){
+        System.out.println("Elige una opcion:");
+        System.out.println("1.Mida tablero");
+        System.out.println("2.Volver atras");
+
+        return sc.nextInt();
+    }
+    public void sinImplementar(){
+        System.out.println("Opcion pendiente de programar");
+    }
+
     public void mostrarTaulell(char[][] taulell, int torn){
         System.out.println("Torn: Jugador " + torn);
         for(int i = 0; i < 3; i++) {
