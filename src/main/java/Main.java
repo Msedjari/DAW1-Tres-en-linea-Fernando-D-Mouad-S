@@ -24,7 +24,7 @@ public class Main {
                     select = false;
                     break;
                 default:
-                    tui.mostrarMenuPrincipal();
+                    start();
                     break;
             }
         }while(select);
@@ -32,14 +32,31 @@ public class Main {
     private static void novaPartida(){
         Joc joc = new Joc();
         TUI tui = new TUI();
-
-        joc.novaPartida();
-
-        tui.mostrarTaulell(joc.getTaulell(), joc.getTorn());
-        int [] jugada = tui.recollirJugada(joc.getTorn());
-        joc.jugar(jugada[0],jugada[1]);
-        joc.jugadaGuanyador(jugada[0],jugada[1]);
-
+        while (true) {
+            boolean ganador;
+            boolean empate;
+            joc.novaPartida();
+            while (true){
+                tui.mostrarTaulell(joc.getTaulell());
+                int[] jugada = tui.recollirJugada(joc.getTorn());
+                if (jugada[0] == -2 && jugada[1] == -2){ //-2 por como lee el metodo la entrada de datos.
+                    start();
+                }
+                joc.jugar(jugada[0], jugada[1]);
+                ganador = joc.jugadaGuanyador(jugada[0], jugada[1]);
+                empate = joc.jugadaEmpate(jugada[0], jugada[1]);
+                if (ganador || !empate){
+                    break;
+                }
+            }
+            tui.mostrarTaulell(joc.getTaulell());
+            if (ganador) {
+                tui.fiDePartida(joc.getTorn());
+            } else {
+                tui.fiDePartidaEmpate();
+            };
+            start();
+        }
     }
     private static void carregarPartida(){
         throw new NotImplementedException();
@@ -59,6 +76,23 @@ public class Main {
                 tui.mostrarMenuConfiguracion();
                 break;
         }
+        boolean select = true;
+        do{
+            int opcion = tui.mostrarMenuConfiguracion();
+            switch (opcion) {
+                case 1:
+                    tui.sinImplementar();
+                    select = false;
+                    break;
+                case 2:
+                    start();
+                    select = false;
+                    break;
+                default:
+                    configuracio();
+                    break;
+            }
+        }while(select);
     }
     private static void sortir(){
         System.exit(0);

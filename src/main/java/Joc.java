@@ -36,7 +36,7 @@ public class Joc {
     }
     public boolean jugadaGuanyador(int fila,int columna){
 
-        char ficha = (torn == 1) ? 'X' : 'O' ;
+        char ficha = (torn == 2) ? 'X' : 'O' ;
         // Verificar si hay una línea ganadora en la fila actual
         if (taulell[fila][0] == ficha && taulell[fila][1] == ficha && taulell[fila][2] == ficha) {
             return true; // Línea horizontal
@@ -50,8 +50,21 @@ public class Joc {
             return true; // Diagonal principal
         }
         // Verificar si hay una línea ganadora en la diagonal inversa
-        return fila + columna == 2 && taulell[0][2] == ficha && taulell[1][1] == ficha && taulell[2][0] == ficha; // Diagonal secundaria
+        return fila + columna == 2 && taulell[0][2] == ficha && taulell[1][1] == ficha && taulell[2][0] == ficha;// Diagonal secundaria
 
+    }
+    public boolean jugadaEmpate(int fila,int columna){
+        // Comprueba si todas las casillas estan llenas (Empate)
+        boolean lleno = false;
+        for(int i = 0; i < taulell.length; i++) {
+            for (int j = 0; j < taulell.length; j++) {
+                if(taulell[i][j] == '_'){
+                    lleno = true;
+                    break;
+                }
+            }
+        }
+        return lleno;
     }
 
 }
