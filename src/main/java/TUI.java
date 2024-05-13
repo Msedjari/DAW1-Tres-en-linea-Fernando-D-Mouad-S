@@ -5,12 +5,13 @@ public class TUI {
     private Scanner sc = new Scanner(System.in);
 
     public int validacionCaracter() {
-        int caracterValido = 0; //Inicia el caracter en 0
+        int caracterValido = 0;
         if (sc.hasNextInt()){ //comporueba que el valor sea un numero
-            caracterValido = sc.nextInt(); //Le el numero del usuario
+           caracterValido = sc.nextInt(); //Le el numero del usuario
         }else{
             String entradaInvalida = sc.next(); //Le el valor no valido
             System.out.println("Caracter: " + entradaInvalida + " no valido, introduce un numero");
+            caracterValido = validacionCaracter(); //hace que vuelva a llamar al metodo !RECURSIVIDAD!
         }
         return caracterValido;
     }
