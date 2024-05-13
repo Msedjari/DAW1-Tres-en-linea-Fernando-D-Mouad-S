@@ -81,7 +81,7 @@ public class Main {
             int opcion = tui.mostrarMenuConfiguracion();
             switch (opcion) {
                 case 1:
-                    tui.sinImplementar();
+                    tui.modificarMidaTaulell();
                     select = false;
                     break;
                 case 2:
