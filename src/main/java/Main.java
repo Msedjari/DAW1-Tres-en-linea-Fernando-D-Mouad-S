@@ -41,7 +41,7 @@ public class Main {
             boolean empate;
             joc.novaPartida();
             while (true){
-                tui.mostrarTaulell(joc.getTaulell(), joc.getTorn());
+                tui.mostrarTaulell(joc.getTaulell());
                 int[] jugada = tui.recollirJugada(joc.getTorn());
                 if (jugada[0] == -2 && jugada[1] == -2){ //-2 por como lee el metodo la entrada de datos.
                     start();
@@ -53,7 +53,7 @@ public class Main {
                     break;
                 }
             }
-            tui.mostrarTaulell(joc.getTaulell(), joc.getTorn());
+            tui.mostrarTaulell(joc.getTaulell());
             if (ganador) {
                 tui.fiDePartida(joc.getTorn());
             } else {
@@ -80,7 +80,7 @@ public class Main {
                     select = false;
                     break;
                 default:
-                    tui.mostrarMenuConfiguracion();
+                    configuracio();
                     break;
             }
         }while(select);

@@ -4,6 +4,17 @@ import java.util.Scanner;
 public class TUI {
     private Scanner sc = new Scanner(System.in);
 
+    public int validacionCaracter() {
+        int caracterValido = 0; //Inicia el caracter en 0
+        if (sc.hasNextInt()){ //comporueba que el valor sea un numero
+            caracterValido = sc.nextInt(); //Le el numero del usuario
+        }else{
+            String entradaInvalida = sc.next(); //Le el valor no valido
+            System.out.println("Caracter: " + entradaInvalida + " no valido, introduce un numero");
+        }
+        return caracterValido;
+    }
+
     public int mostrarMenuPrincipal() {
         System.out.println("Elige una opcion:");
         System.out.println("1.Nueva partida");
@@ -11,20 +22,20 @@ public class TUI {
         System.out.println("3.Configuracion");
         System.out.println("4.Salir");
 
-        return sc.nextInt();
+        return validacionCaracter();
     }
     public int mostrarMenuConfiguracion(){
         System.out.println("Elige una opcion:");
         System.out.println("1.Mida tablero");
         System.out.println("2.Volver atras");
 
-        return sc.nextInt();
+        return validacionCaracter();
     }
     public void sinImplementar(){
         System.out.println("Opcion pendiente de programar");
     }
 
-    public void mostrarTaulell(char[][] taulell, int torn){
+    public void mostrarTaulell(char[][] taulell){
         for(int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.print(taulell[i][j] + " ");
@@ -43,11 +54,12 @@ public class TUI {
             System.out.println("Jugador " + torn + ", introduce tu jugada:");
             //leer la limitefila ingresada por el jugador
             System.out.println("Introduce la fila:");
-            int fila = sc.nextInt();
+
+            int fila = validacionCaracter(); //Lee el numero
             jugada[0] = fila - 1; //elimina 1 al caracter para que ser amigable con el usaurio: 0 = 1.
-            //leer la limitecolumna ingresada por  el jugador
             System.out.println("Introduce la columna:");
-            int columna = sc.nextInt();
+
+            int columna = validacionCaracter(); //Lee el numero
             jugada[1] = columna - 1; //elimina 1 al caracter para que ser amigable con el usaurio: 0 = 1.
 
             // Verificar si la jugada es válida
