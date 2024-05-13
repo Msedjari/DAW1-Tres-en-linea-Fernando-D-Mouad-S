@@ -5,6 +5,12 @@ public class Joc {
 
     private char [][] taulell;
 
+    public int getNovaMida() {
+        return novaMida;
+    }
+
+    int novaMida;
+
     public char[][] getTaulell() {
         return taulell;
     }
