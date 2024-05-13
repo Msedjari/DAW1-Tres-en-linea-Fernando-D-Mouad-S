@@ -3,7 +3,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class Main {
     public static void main(String[] args) {
         TUI tui = new TUI();
-        boolean select = true
+        boolean select = true;
         do{
         int opcion = tui.mostrarMenuPrincipal();
             switch (opcion) {
@@ -47,18 +47,22 @@ public class Main {
     private static void configuracio(){
         TUI tui = new TUI();
         int opcionC = tui.mostrarMenuConfiguracion();
-
-        switch (opcionC) {
-            case 1:
-                tui.sinImplementar();
-                break;
-            case 2:
-                tui.mostrarMenuPrincipal();
-                break;
-            default:
-                tui.mostrarMenuConfiguracion();
-                break;
-        }
+        boolean select = true;
+        do{
+            switch (opcionC) {
+                case 1:
+                    tui.sinImplementar();
+                    select = false;
+                    break;
+                case 2:
+                    tui.mostrarMenuPrincipal();
+                    select = false;
+                    break;
+                default:
+                    tui.mostrarMenuConfiguracion();
+                    break;
+            }
+        }while(select);
     }
     private static void sortir(){
         System.exit(0);
