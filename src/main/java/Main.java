@@ -3,31 +3,43 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class Main {
     public static void main(String[] args) {
         TUI tui = new TUI();
+        boolean select = true
+        do{
         int opcion = tui.mostrarMenuPrincipal();
-
-        switch (opcion) {
-            case 1:
-                novaPartida();
-                break;
-            case 2:
-                carregarPartida();
-                break;
-            case 3:
-                configuracio();
-                break;
-            case 4:
-                sortir();
-                break;
-            default:
-                tui.mostrarMenuPrincipal();
-                break;
-        }
+            switch (opcion) {
+                case 1:
+                    novaPartida();
+                    select = false;
+                    break;
+                case 2:
+                    carregarPartida();
+                    select = false;
+                    break;
+                case 3:
+                    configuracio();
+                    select = false;
+                    break;
+                case 4:
+                    sortir();
+                    select = false;
+                    break;
+                default:
+                    tui.mostrarMenuPrincipal();
+                    break;
+            }
+        }while(select);
     }
     private static void novaPartida(){
         Joc joc = new Joc();
         TUI tui = new TUI();
+
         joc.novaPartida();
+
         tui.mostrarTaulell(joc.getTaulell(), joc.getTorn());
+        int [] jugada = tui.recollirJugada(joc.getTorn());
+        joc.jugar(jugada[0],jugada[1]);
+        joc.jugadaGuanyador(jugada[0],jugada[1]);
+
     }
     private static void carregarPartida(){
         throw new NotImplementedException();
