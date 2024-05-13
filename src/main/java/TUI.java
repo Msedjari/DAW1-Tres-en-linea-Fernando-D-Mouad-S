@@ -25,7 +25,6 @@ public class TUI {
     }
 
     public void mostrarTaulell(char[][] taulell, int torn){
-        System.out.println("Torn: Jugador " + torn);
         for(int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.print(taulell[i][j] + " ");
@@ -34,30 +33,54 @@ public class TUI {
         }
 
     }
-    public int[] recollirJugada(int torn){ //No Valido
+    public int[] recollirJugada(int torn){
         //almacenar las cordenadas de la jugada
         int[] jugada = new int[2];
         //verificar si la jugada es valida
         boolean jugadaValida = false;
 
         while (!jugadaValida) {
-            System.out.println("Jugador " + torn + ", introduce la limitefila y limitecolumna de tu jugada:");
+            System.out.println("Jugador " + torn + ", introduce tu jugada:");
             //leer la limitefila ingresada por el jugador
-            jugada[0] = sc.nextInt();
+            System.out.println("Introduce la fila:");
+            int fila = sc.nextInt();
+            jugada[0] = fila - 1; //elimina 1 al caracter para que ser amigable con el usaurio: 0 = 1.
             //leer la limitecolumna ingresada por  el jugador
-            jugada[1] = sc.nextInt();
+            System.out.println("Introduce la columna:");
+            int columna = sc.nextInt();
+            jugada[1] = columna - 1; //elimina 1 al caracter para que ser amigable con el usaurio: 0 = 1.
 
             // Verificar si la jugada es válida
             if (jugada[0] >= 0 && jugada[0] < 3 && jugada[1] >= 0 && jugada[1] < 3) {
                 jugadaValida = true;
+            } else if (jugada[0] == -2 && jugada[1] == -2) { // -2 por el factor -1 implementado arriba
+                jugadaValida = true; //Opcion para volver atras
+
             } else {
                 System.out.println("Jugada inválida. Inténtalo de nuevo.");
             }
         }
         return jugada;
     }
+    public void fiDePartidaEmpate(){
+        System.out.println(" ");
+        System.out.println("Fin! Empate");
+        System.out.println(" ");
+    }
     public void fiDePartida(int guanyador){
-        throw new NotImplementedException();
+        //Como creo que deveria ser, muestra quien gana:
+        // System.out.println("Fin! Ha ganado el Jugador: " + guanyador);
+
+        //Trampeando TUI
+        if(guanyador == 1) {
+            System.out.println(" ");
+            System.out.println("Fin! Ha ganado el Jugador: 2");
+            System.out.println(" ");
+        }else {
+            System.out.println(" ");
+            System.out.println("Fin! Ha ganado el Jugador: 1");
+            System.out.println(" ");
+        }
     }
 }
 

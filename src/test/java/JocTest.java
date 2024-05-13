@@ -115,7 +115,7 @@ class JocTest {
         //realizar la jugada de J1
         joc.jugar(0, 2);
         //Comprueba
-        assertFalse(joc.jugadaGuanyador(0, 2));
+        assertTrue(joc.jugadaGuanyador(0, 2));
     }
     @org.junit.jupiter.api.Test
     void jugadaGuanyador_tableroJugadaGuanyadoraJ2(){
@@ -134,7 +134,7 @@ class JocTest {
         //realizar la jugada de J2
         joc.jugar(2, 2);
         //Comprueba
-        assertFalse(joc.jugadaGuanyador(2, 2));
+        assertTrue(joc.jugadaGuanyador(2, 2));
     }
 
 
