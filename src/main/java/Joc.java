@@ -1,7 +1,14 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Arrays;
 import java.io.*;
 import java.util.Scanner;
+
 
 public class Joc {
     private  int torn;
@@ -111,5 +118,14 @@ public class Joc {
         }
         return lleno;// Si todas las casillas están ocupadas, hay empate
     }
-
+    public void guardarPartida() throws IOException {
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+        File directorio = new File("savedagame");
+        //crea el saved
+        FileWriter saved = new FileWriter("savedgame/" + fecha + "_" + hora);
+        saved.write(torn);
+        saved.write(Arrays.toString(taulell));
+        saved.close();
+    }
 }

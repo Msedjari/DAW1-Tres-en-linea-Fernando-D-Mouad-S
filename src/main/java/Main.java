@@ -1,11 +1,13 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
-        start(); //inicia el programa
+    public static void main(String[] args) throws IOException {
+        start();
 
     }
-    private static void start(){
+    private static void start() throws IOException {
         TUI tui = new TUI();
         boolean select = true;
         do{
@@ -33,11 +35,10 @@ public class Main {
             }
         }while(select);
     }
-    private static void novaPartida(){
+    private static void novaPartida() throws IOException {
         Joc joc = new Joc();
         TUI tui = new TUI();
         while (true) {
-
             boolean ganador;
             boolean empate;
             joc.novaPartida();
@@ -45,6 +46,7 @@ public class Main {
                 tui.mostrarTaulell(joc.getTaulell());
                 int[] jugada = tui.recollirJugada(joc.getTorn());
                 if (jugada[0] == -2 && jugada[1] == -2){ //-2 por como lee el metodo la entrada de datos.
+                    joc.guardarPartida();
                     start();
                 }
                 joc.jugar(jugada[0], jugada[1]);
@@ -66,7 +68,7 @@ public class Main {
     private static void carregarPartida(){
         throw new NotImplementedException();
     }
-    private static void configuracio(){
+    private static void configuracio() throws IOException {
         TUI tui = new TUI();
         Joc joc = new Joc();
         int opcionC = tui.mostrarMenuConfiguracion();
