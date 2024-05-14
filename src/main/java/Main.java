@@ -9,7 +9,7 @@ public class Main {
         TUI tui = new TUI();
         boolean select = true;
         do{
-            int opcion = tui.mostrarMenuPrincipal();
+        int opcion = tui.mostrarMenuPrincipal();
             switch (opcion) {
                 case 1:
                     novaPartida();
@@ -67,12 +67,25 @@ public class Main {
     }
     private static void configuracio(){
         TUI tui = new TUI();
+        int opcionC = tui.mostrarMenuConfiguracion();
+
+        switch (opcionC) {
+            case 1:
+                tui.modificarMidaTaulell();
+                break;
+            case 2:
+                tui.mostrarMenuPrincipal();
+                break;
+            default:
+                tui.mostrarMenuConfiguracion();
+                break;
+        }
         boolean select = true;
         do{
             int opcion = tui.mostrarMenuConfiguracion();
             switch (opcion) {
                 case 1:
-                    tui.sinImplementar();
+                    tui.modificarMidaTaulell();
                     select = false;
                     break;
                 case 2:

@@ -136,6 +136,15 @@ class JocTest {
         //Comprueba
         assertTrue(joc.jugadaGuanyador(2, 2));
     }
+    /*
+    @org.junit.jupiter.api.Test
+    void testTableros(){
+        Joc joc = new Joc();
+        for (int novaMida = 3; novaMida<= 10 ; novaMida++){
+            assertEquals(novaMida,joc.getNovaMida());
+        }
+    }
 
+     */
 
 }

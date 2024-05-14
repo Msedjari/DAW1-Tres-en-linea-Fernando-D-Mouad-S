@@ -32,8 +32,24 @@ public class TUI {
 
         return validacionCaracter();
     }
-    public void sinImplementar(){
-        System.out.println("Opcion pendiente de programar");
+    public void modificarMidaTaulell(){
+        System.out.println("Itrodueix la nova mida del taulell entre 3 i 10:");
+        Scanner sc = new Scanner(System.in);
+        int novaMida = sc.nextInt();
+
+        if (novaMida >=3 && novaMida <= 10){
+            int midaTaulell = novaMida;
+            guardarConfiguracion();
+            System.out.println("Mida el taulell modificada amb exit!!");
+        }
+        else {
+            System.out.println("La nova mida del taulell ha de ser entre 3 i 10.");
+        }
+    }
+
+    public void guardarConfiguracion(){
+        CrearArchivo crearArchivo = new CrearArchivo();
+        crearArchivo.getClass();
     }
 
     public void mostrarTaulell(char[][] taulell){
