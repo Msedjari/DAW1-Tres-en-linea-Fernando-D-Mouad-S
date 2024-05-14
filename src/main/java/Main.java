@@ -24,10 +24,11 @@ public class Main {
                     select = false;
                     break;
                 default:
-                    start();
+                    tui.mostrarMenuPrincipal();
                     break;
             }
         }while(select);
+
     }
     private static void novaPartida(){
         Joc joc = new Joc();
