@@ -2,10 +2,14 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Main {
     public static void main(String[] args) {
+        start(); //inicia el programa
+
+    }
+    private static void start(){
         TUI tui = new TUI();
         boolean select = true;
         do{
-        int opcion = tui.mostrarMenuPrincipal();
+            int opcion = tui.mostrarMenuPrincipal();
             switch (opcion) {
                 case 1:
                     novaPartida();
@@ -24,11 +28,10 @@ public class Main {
                     select = false;
                     break;
                 default:
-                    tui.mostrarMenuPrincipal();
+                    start();
                     break;
             }
         }while(select);
-
     }
     private static void novaPartida(){
         Joc joc = new Joc();
