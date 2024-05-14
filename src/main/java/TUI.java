@@ -83,7 +83,7 @@ public class TUI {
             if (jugada[0] >= 0 && jugada[0] < 3 && jugada[1] >= 0 && jugada[1] < 3) {
                 jugadaValida = true;
             } else if (jugada[0] == -2 && jugada[1] == -2) { // -2 por el factor -1 implementado arriba
-                jugadaValida = true; //Opcion para volver atras
+                jugadaValida = true; //Opcion para guardar partida
 
             } else {
                 System.out.println("Jugada inválida. Inténtalo de nuevo.");
@@ -109,6 +109,18 @@ public class TUI {
             System.out.println(" ");
             System.out.println("Fin! Ha ganado el Jugador: 1");
             System.out.println(" ");
+        }
+    }
+    public void seGuarda(boolean guardado){
+        if (guardado){
+            System.out.println("Guardando...");
+            System.out.println("Se ha guardado el archivo");
+            System.out.println(" ");
+        }else {
+            System.out.println("Guardando...");
+            System.out.println("El archvio ya existe");
+            System.out.println(" ");
+
         }
     }
 }
