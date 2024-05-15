@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 public class Joc {
@@ -75,12 +76,19 @@ public class Joc {
     }
     public void guardarPartida() throws IOException {
         LocalDate fecha = LocalDate.now();
-        LocalTime hora = LocalTime.now();
-        File directorio = new File("savedagame");
-        //crea el saved
-        FileWriter saved = new FileWriter("savedgame/" + fecha + "_" + hora);
-        saved.write(torn);
-        saved.write(Arrays.toString(taulell));
+        LocalTime hora = LocalTime.now().withNano(0); //elimina nanosegundos
+        DateTimeFormatter horaFormateada = DateTimeFormatter.ofPattern("HHmmss");
+        //crea el directorio si no existe
+        String nombredirectorio = "savedgame";
+        File directorio = new File(nombredirectorio);
+        if (!directorio.exists()){
+            directorio.mkdir();
+        }
+        //crea el archivo de guarado
+        String archivoNombre = String.format(nombredirectorio + "/%s_%s.txt", fecha, hora.format(horaFormateada));
+        FileWriter saved = new FileWriter(archivoNombre); //Crea el archivo
+        saved.write(torn + System.lineSeparator()); //Guarda el turno y añade una nueva linea
+        saved.write(Arrays.toString(taulell)); //Guarda el tablero
         saved.close();
     }
 }

@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -136,15 +138,22 @@ class JocTest {
         //Comprueba
         assertTrue(joc.jugadaGuanyador(2, 2));
     }
-    /*
-    @org.junit.jupiter.api.Test
-    void testTableros(){
+    @Test
+    public void guardarPartida() throws IOException {
         Joc joc = new Joc();
-        for (int novaMida = 3; novaMida<= 10 ; novaMida++){
-            assertEquals(novaMida,joc.getNovaMida());
+        String nombredirectorio = "savedgame";
+        File directorio = new File(nombredirectorio);
+        if(directorio.isDirectory()) {
+        File[] archivos = directorio.listFiles();
+            if(archivos != null){
+                for(File archivo : archivos){
+                    archivo.delete();
+                }
+            }
         }
+        directorio.delete();
+        joc.guardarPartida();
+        assertTrue(directorio.exists());
     }
-
-     */
 
 }

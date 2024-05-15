@@ -47,6 +47,7 @@ public class Main {
                 int[] jugada = tui.recollirJugada(joc.getTorn());
                 if (jugada[0] == -2 && jugada[1] == -2){ //-2 por como lee el metodo la entrada de datos.
                     joc.guardarPartida();
+                    tui.seGuarda();
                     start();
                 }
                 joc.jugar(jugada[0], jugada[1]);
