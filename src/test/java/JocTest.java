@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -246,7 +247,23 @@ class JocTest {
         //Comprueba
         assertTrue(joc.jugadaGuanyador(2, 2));
     }
-
+    @Test
+    public void guardarPartida() throws IOException {
+        Joc joc = new Joc();
+        String nombredirectorio = "savedgame";
+        File directorio = new File(nombredirectorio);
+        if(directorio.isDirectory()) {
+        File[] archivos = directorio.listFiles();
+            if(archivos != null){
+                for(File archivo : archivos){
+                    archivo.delete();
+                }
+            }
+        }
+        directorio.delete();
+        joc.guardarPartida();
+        assertTrue(directorio.exists());
+    }
     @Test
     void archivoGenerado() {
         Joc joc = new Joc();
@@ -287,6 +304,5 @@ class JocTest {
         File archivo = new File(Joc.config_directorio, Joc.config_file);
         archivo.delete();
     }
-
 
 }

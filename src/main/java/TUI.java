@@ -119,17 +119,10 @@ public class TUI {
             System.out.println(" ");
         }
     }
-    public void seGuarda(boolean guardado){
-        if (guardado){
+    public void seGuarda(){
             System.out.println("Guardando...");
             System.out.println("Se ha guardado el archivo");
             System.out.println(" ");
-        }else {
-            System.out.println("Guardando...");
-            System.out.println("El archvio ya existe");
-            System.out.println(" ");
-
-        }
     }
 }
 
