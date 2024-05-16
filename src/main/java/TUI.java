@@ -124,6 +124,12 @@ public class TUI {
             System.out.println("Se ha guardado el archivo");
             System.out.println(" ");
     }
+
+    public void mostrarSeCarga(){
+        System.out.println("Cargando...");
+        System.out.println("Se ha cargado el archivo");
+        System.out.println(" ");
+    }
 }
 
 
