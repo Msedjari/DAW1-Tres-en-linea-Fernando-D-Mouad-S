@@ -277,9 +277,15 @@ class JocTest {
         joc1.novaPartida(); // Lanza la partida
         joc1.jugar(0, 0);//realizar la jugada de J1
         joc1.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
+        String nombredirectorio = "savedgame"; //Variable del nombre del directorio
+        File directorio = new File(nombredirectorio); //Instancia la clase
+        File[] archivos = directorio.listFiles(); //Crea un array de archivos
+        assert archivos != null;
+        int i = archivos.length -1;
         Joc joc2 = new Joc(); //Instancia la clase joc2
-        joc2.cargarPartida(); //Llama al metodo para cargar la partida
+        joc2.cargarTurnoPartidaGuardada(i); //Llama al metodo para cargar el turno
         assertEquals(joc1.getTorn(),joc2.getTorn());//compruba que el torn guardado de joc1 es igual al torn cargado en joc2
+        joc2.cargarTaulellPartidaGuardada(i); //Llama al metodo para cargar el tablero
         assertEquals(joc1.getTaulell(), joc2.getTaulell());//compruba que el tablero guardado de joc1 es igual al tablero cargado en joc2
     }
     @Test

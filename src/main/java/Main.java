@@ -1,5 +1,6 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
@@ -66,8 +67,40 @@ public class Main {
             start();
         }
     }
-    private static void carregarPartida(){
-        throw new NotImplementedException();
+    private static void carregarPartida() throws IOException {
+        Joc joc = new Joc();
+        TUI tui = new TUI();
+        tui.mostrarPartidasGuardadas(joc.verPartidasGuardadas());
+        tui.seleccionaUnaPartida();
+        joc.cargarTurnoPartidaGuardada(tui.partidaParaCargar());
+        joc.cargarTaulellPartidaGuardada(tui.partidaParaCargar());
+        tui.mostrarSeCarga();
+        while (true) {
+            boolean ganador;
+            boolean empate;
+            while (true){
+                tui.mostrarTaulell(joc.getTaulell());
+                int[] jugada = tui.recollirJugada(joc.getTorn());
+                if (jugada[0] == -2 && jugada[1] == -2){ //-2 por como lee el metodo la entrada de datos.
+                    joc.guardarPartida();
+                    tui.seGuarda();
+                    start();
+                }
+                joc.jugar(jugada[0], jugada[1]);
+                ganador = joc.jugadaGuanyador(jugada[0], jugada[1]);
+                empate = joc.jugadaEmpate(jugada[0], jugada[1]);
+                if (ganador || !empate){
+                    break;
+                }
+            }
+            tui.mostrarTaulell(joc.getTaulell());
+            if (ganador) {
+                tui.fiDePartida(joc.getTorn());
+            } else {
+                tui.fiDePartidaEmpate();
+            };
+            start();
+        }
     }
     private static void configuracio() throws IOException {
         TUI tui = new TUI();
