@@ -249,20 +249,20 @@ class JocTest {
     }
     @Test
     public void guardarPartida() throws IOException {
-        Joc joc = new Joc();
-        String nombredirectorio = "savedgame";
-        File directorio = new File(nombredirectorio);
-        if(directorio.isDirectory()) {
-        File[] archivos = directorio.listFiles();
-            if(archivos != null){
-                for(File archivo : archivos){
-                    archivo.delete();
+        Joc joc = new Joc(); //Instancia la clase
+        String nombredirectorio = "savedgame"; //Variable del nombre del directorio
+        File directorio = new File(nombredirectorio); //Instancia la clase
+        if(directorio.isDirectory()) { //Mira si el directorio existe
+        File[] archivos = directorio.listFiles(); //Crea un array de archivos
+            if(archivos != null){ //Si el array no esta vacio
+                for(File archivo : archivos){ //recorre el array 1 por 1
+                    archivo.delete(); //elimina el archivo
                 }
             }
         }
-        directorio.delete();
-        joc.guardarPartida();
-        assertTrue(directorio.exists());
+        directorio.delete(); //elimina el directorio
+        joc.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
+        assertTrue(directorio.exists()); //comprueba que el directorio existe, no comprueba que exista el archvio ya que este se genera con un nombre diferente cada vez.
     }
     @Test
     void archivoGenerado() {
