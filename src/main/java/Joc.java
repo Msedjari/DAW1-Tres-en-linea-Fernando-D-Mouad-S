@@ -136,4 +136,6 @@ public class Joc {
         saved.write(Arrays.toString(taulell)); //Guarda el tablero
         saved.close();
     }
+
+
 }
