@@ -92,5 +92,10 @@ public class Joc {
         saved.close();
     }
 
-
+    public String[] verPartidasGuardadas(){
+        String nombredirectorio = "savedgame";
+        File directorio = new File(nombredirectorio);
+        File[] partidasGuardadas = directorio.listFiles();
+        return partidasGuardadas;
+    }
 }
