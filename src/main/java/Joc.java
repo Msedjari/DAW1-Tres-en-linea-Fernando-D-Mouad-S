@@ -1,12 +1,16 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class Joc {
     private  int torn;
@@ -88,14 +92,63 @@ public class Joc {
         String archivoNombre = String.format(nombredirectorio + "/%s_%s.txt", fecha, hora.format(horaFormateada));
         FileWriter saved = new FileWriter(archivoNombre); //Crea el archivo
         saved.write(torn + System.lineSeparator()); //Guarda el turno y añade una nueva linea
-        saved.write(Arrays.toString(taulell)); //Guarda el tablero
+        for (char[] fila : taulell) { //Guarda el tablero (contenido de la matriz)
+            saved.write(new String(fila) + System.lineSeparator());
+        }
         saved.close();
     }
 
     public String[] verPartidasGuardadas(){
         String nombredirectorio = "savedgame";
         File directorio = new File(nombredirectorio);
+        if (!directorio.exists() || !directorio.isDirectory() || !directorio.canRead()) { //Comprueba que el directorio exista y se puede leer
+            return new String[0]; // Retorna un array vacío si el directorio no existe o no es legible
+        }
         File[] partidasGuardadas = directorio.listFiles();
-        return partidasGuardadas;
+        if(partidasGuardadas != null){ //Comprueba que el array no este vacio
+            String[] nombresArchivos = new String[partidasGuardadas.length];
+            for (int i = 0; i < partidasGuardadas.length; i++){ //Recorre el array
+                nombresArchivos[i] = partidasGuardadas[i].getName(); //Guarda los nombres en el array
+            }
+            return nombresArchivos;
+        }else{
+            return new String[0]; //Retorna un array vacío si no existen archivos
+        }
+    }
+
+    public int cargarTurnoPartidaGuardada(int archivo) throws FileNotFoundException {
+        String nombredirectorio = "savedgame";
+        File directorio = new File(nombredirectorio);
+        File[] partidasGuardadas = directorio.listFiles(); //Crea un array con todos los archivos
+        if (partidasGuardadas != null) { //Mira que el array no este vacia
+            File partidasGuardada = partidasGuardadas[archivo];
+            Scanner leerPartida = new Scanner(partidasGuardada);
+            torn = leerPartida.nextInt();
+        }
+        return torn;
+    }
+
+    public char[][] cargarTaulellPartidaGuardada(int archivo) throws FileNotFoundException {
+        String nombredirectorio = "savedgame";
+        File directorio = new File(nombredirectorio);
+        File[] partidasGuardadas = directorio.listFiles(); //Crea un array con todos los archivos
+        if (partidasGuardadas != null) { //Mira que el array no este vacia
+            File partidasGuardada = partidasGuardadas[archivo];
+            Scanner leerPartida = new Scanner(partidasGuardada);
+            leerPartida.nextLine(); //La la primera linea y la ignora
+            List<char[]> tableroList = new ArrayList<>(); // Lee el tablero línea por línea y lo convierte en char[][]
+            while (leerPartida.hasNextLine()){
+                String linea = leerPartida.nextLine();
+                tableroList.add(linea.toCharArray());
+            }
+            char[][] taulellGuardado = new char[tableroList.size()][]; // Convierte la lista de char[] en un char[][]
+            for (int i = 0; i < tableroList.size(); i++) {
+                taulellGuardado[i] = tableroList.get(i);
+            }
+            taulell = taulellGuardado;
+            return taulell;
+        }else {
+            return null;
+        }
     }
 }

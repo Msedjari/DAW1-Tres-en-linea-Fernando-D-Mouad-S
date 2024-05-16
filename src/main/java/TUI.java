@@ -117,6 +117,26 @@ public class TUI {
             System.out.println(" ");
     }
 
+    public void mostrarPartidasGuardadas(String[] archivos){
+        if(archivos.length == 0){
+            System.out.println("No existen partidas guardadas");
+        }else {
+            int id = 1;
+            System.out.println("Partidas guardadas:");
+            for (String archivo : archivos){
+                System.out.println(id + ". " +archivo);
+                id ++;
+            }
+        }
+
+    }
+    public void seleccionaUnaPartida(){
+        System.out.println("Selecciona que partida quieresa cargar:");
+    }
+    public int partidaParaCargar(){
+        return validacionCaracter();
+    }
+
     public void mostrarSeCarga(){
         System.out.println("Cargando...");
         System.out.println("Se ha cargado el archivo");
