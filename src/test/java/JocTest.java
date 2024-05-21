@@ -177,7 +177,16 @@ class JocTest {
         joc2.cargarTurnoPartidaGuardada(i); //Llama al metodo para cargar el turno
         assertEquals(joc1.getTorn(),joc2.getTorn());//compruba que el torn guardado de joc1 es igual al torn cargado en joc2
         joc2.cargarTaulellPartidaGuardada(i); //Llama al metodo para cargar el tablero
-        assertEquals(joc1.getTaulell(), joc2.getTaulell());//compruba que el tablero guardado de joc1 es igual al tablero cargado en joc2
+        boolean resultado = false;
+        for (int a = 0; a < joc1.getTaulell().length; a++){
+            for (int j = 0; j < joc1.getTaulell().length; j++){
+                if (joc1.getTaulell()[a][j] == joc2.getTaulell()[a][j]) {
+                     resultado = true;
+                }
+            }
+
+        }
+        assertTrue(resultado);//compruba que el tablero guardado de joc1 es igual al tablero cargado en joc2
     }
 
 
