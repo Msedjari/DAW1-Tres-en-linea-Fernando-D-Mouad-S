@@ -72,8 +72,12 @@ public class Main {
         TUI tui = new TUI();
         tui.mostrarPartidasGuardadas(joc.verPartidasGuardadas());
         tui.seleccionaUnaPartida();
-        joc.cargarTurnoPartidaGuardada(tui.partidaParaCargar());
-        joc.cargarTaulellPartidaGuardada(tui.partidaParaCargar());
+        int partidaSeleccionada = tui.partidaParaCargar();
+        if (partidaSeleccionada == -1){
+            start();
+        }
+        joc.cargarTurnoPartidaGuardada(partidaSeleccionada);
+        joc.cargarTaulellPartidaGuardada(partidaSeleccionada);
         tui.mostrarSeCarga();
         while (true) {
             boolean ganador;

@@ -166,7 +166,7 @@ public class Joc {
         File directorio = new File(nombredirectorio);
         File[] partidasGuardadas = directorio.listFiles(); //Crea un array con todos los archivos
         if (partidasGuardadas != null) { //Mira que el array no este vacia
-            File partidasGuardada = partidasGuardadas[archivo];
+            File partidasGuardada = partidasGuardadas[archivo-1];
             Scanner leerPartida = new Scanner(partidasGuardada);
             torn = leerPartida.nextInt();
         }
@@ -178,12 +178,12 @@ public class Joc {
         File directorio = new File(nombredirectorio);
         File[] partidasGuardadas = directorio.listFiles(); //Crea un array con todos los archivos
         if (partidasGuardadas != null) { //Mira que el array no este vacia
-            File partidasGuardada = partidasGuardadas[archivo];
+            File partidasGuardada = partidasGuardadas[archivo-1];
             Scanner leerPartida = new Scanner(partidasGuardada);
             leerPartida.nextLine(); //La la primera linea y la ignora
             List<char[]> tableroList = new ArrayList<>(); // Lee el tablero línea por línea y lo convierte en char[][]
             while (leerPartida.hasNextLine()){
-                String linea = leerPartida.nextLine();
+            String linea = leerPartida.nextLine();
                 tableroList.add(linea.toCharArray());
             }
             char[][] taulellGuardado = new char[tableroList.size()][]; // Convierte la lista de char[] en un char[][]
