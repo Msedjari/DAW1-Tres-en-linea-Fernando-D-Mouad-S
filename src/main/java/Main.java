@@ -108,12 +108,28 @@ public class Main {
     }
     private static void configuracio() throws IOException {
         TUI tui = new TUI();
+        Joc joc = new Joc();
+        int opcionC = tui.mostrarMenuConfiguracion();
+
+        switch (opcionC) {
+            case 1:
+
+                tui.modificarMidaTaulell();
+                break;
+            case 2:
+                tui.mostrarMenuPrincipal();
+                break;
+            default:
+                tui.mostrarMenuConfiguracion();
+                break;
+        }
         boolean select = true;
         do{
             int opcion = tui.mostrarMenuConfiguracion();
             switch (opcion) {
                 case 1:
                     tui.modificarMidaTaulell();
+                    joc.guardarConfiguracion(joc.novaMida);
                     select = false;
                     break;
                 case 2:

@@ -1,5 +1,8 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.*;
+import java.util.Scanner;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.io.*;
+import java.util.Scanner;
+
 
 public class Joc {
     private  int torn;
@@ -31,21 +37,63 @@ public class Joc {
         return torn;
     }
 
-    public void novaPartida(){
-        torn = 1;
-        char[][] taulellGenerat = new char[3][3];
-        for(int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                taulellGenerat[i][j] = '_';
+    public static final String config_directorio = "config";
+    public static  final String config_file = "configuracion.txt";
+
+    public void novaPartida() {
+        try {
+            // Verificar si el directorio de configuración existe, si no, crearlo
+            File directorio = new File(config_directorio);
+            if (!directorio.exists()) {
+                directorio.mkdirs();
+            }
+
+            // Verificar si el archivo de configuración existe, si no, crearlo con el tamaño predeterminado
+            File configFile = new File(config_directorio, config_file);
+            if (!configFile.exists()) {
+                try (FileWriter writer = new FileWriter(configFile)) {
+                    writer.write("3"); // Tamaño predeterminado del tablero
+                }
+            }
+
+            // Leer el tamaño del tablero desde el archivo de configuración
+            try (BufferedReader reader = new BufferedReader(new FileReader(configFile))) {
+                novaMida = Integer.parseInt(reader.readLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        taulell = new char[novaMida][novaMida]; // Inicializar el tablero con el nuevo tamaño
+        // Inicializar el tablero con casillas vacías
+        for (int i = 0; i < novaMida; i++) {
+            for (int j = 0; j < novaMida; j++) {
+                taulell[i][j] = '_';
             }
         }
-        taulell = taulellGenerat;
+        torn = 1; // Inicializar el turno a 1
     }
     public void jugar(int fila,int columna){
         char ficha = (torn == 1) ? 'X' : 'O' ; // Selecciona la ficha segun el turno 1 = X, 2 = O
         taulell[fila][columna] =  ficha; //indicar la fila y la columna donde se colocara la fitcha
         torn = ((torn == 1) ? 2 : 1); //pasar al siguente turno
     }
+
+    // Método para guardar la configuración del tamaño del tablero
+    public void guardarConfiguracion(int novaMida) {
+        //actualizar el tamaño del tablero
+        this.novaMida = novaMida;
+
+        //guardar el tamaño del tablero en el archivo de configuracion
+        File file = new File(config_directorio, config_file);
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(String.valueOf(novaMida)); // Escribe el tamaño en el archivo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean jugadaGuanyador(int fila,int columna){
 
         char ficha = (torn == 2) ? 'X' : 'O' ;
@@ -71,12 +119,12 @@ public class Joc {
         for(int i = 0; i < taulell.length; i++) {
             for (int j = 0; j < taulell.length; j++) {
                 if(taulell[i][j] == '_'){
-                    lleno = true;
+                    lleno = true;// Si hay al menos una casilla vacía, no hay empate
                     break;
                 }
             }
         }
-        return lleno;
+        return lleno;// Si todas las casillas están ocupadas, hay empate
     }
     public void guardarPartida() throws IOException {
         LocalDate fecha = LocalDate.now();
