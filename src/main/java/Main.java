@@ -37,6 +37,7 @@ public class Main {
         Joc joc = new Joc();
         TUI tui = new TUI();
         while (true) {
+
             boolean ganador;
             boolean empate;
             joc.novaPartida();
@@ -67,6 +68,7 @@ public class Main {
     }
     private static void configuracio(){
         TUI tui = new TUI();
+        Joc joc = new Joc();
         int opcionC = tui.mostrarMenuConfiguracion();
 
         switch (opcionC) {
@@ -87,6 +89,7 @@ public class Main {
             switch (opcion) {
                 case 1:
                     tui.modificarMidaTaulell();
+                    joc.guardarConfiguracion(joc.novaMida);
                     select = false;
                     break;
                 case 2:

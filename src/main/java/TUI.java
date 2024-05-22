@@ -59,8 +59,9 @@ public class TUI {
     //en joc
 
     public void mostrarTaulell(char[][] taulell){
+
         //poner taulell.length para que imprima  el tablero
-        for(int i = 0; i <taulell.length; i++) {
+        for(int i = 0; i < taulell.length; i++) {
             for (int j = 0; j < taulell.length; j++) {
                 System.out.print(taulell[i][j] + " ");
             }

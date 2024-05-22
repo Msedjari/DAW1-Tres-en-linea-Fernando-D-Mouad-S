@@ -252,7 +252,7 @@ class JocTest {
         Joc joc = new Joc();
         joc.guardarConfiguracion(5); // Guardar una configuración con un tamaño de 5x5
         // Verificar que el archivo de configuración se ha generado en el directorio correcto
-        File archivo = new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE);
+        File archivo = new File(Joc.config_directorio, Joc.config_file);
         Assertions.assertTrue(archivo.exists());
         // Eliminar el archivo después de la prueba para mantener limpio el entorno de pruebas
         archivo.delete();
@@ -262,29 +262,29 @@ class JocTest {
     void archivoNoGenerado() {
         // Probar el caso en que el directorio de configuración no existe
         Joc joc = new Joc();
-        File dir = new File(Joc.CONFIG_DIR);
-        dir.delete(); // Eliminar el directorio de configuración antes de guardar la configuración
+        File directorio = new File(Joc.config_directorio);
+        directorio.delete(); // Eliminar el directorio de configuración antes de guardar la configuración
         joc.guardarConfiguracion(5); // Guardar una configuración con un tamaño de 5x5
         // Verificar que el archivo de configuración no se ha generado
-        File archivo = new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE);
+        File archivo = new File(Joc.config_directorio, Joc.config_file);
         Assertions.assertTrue(archivo.exists());
     }
 
     @Test
     void contenidoCorrecto() {
         Joc joc = new Joc();
-        int nuevaMida = 7;
-        joc.guardarConfiguracion(nuevaMida); // Guardar una configuración con un tamaño de 7x7
+        int novaMida = 7;
+        joc.guardarConfiguracion(novaMida); // Guardar una configuración con un tamaño de 7x7
         // Verificar que el contenido del archivo de configuración es correcto
-        int tamañoLeido = 0;
-        try (Scanner scanner = new Scanner(new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE))) {
-            tamañoLeido = scanner.nextInt();
+        int tamanoLeido = 0;
+        try (Scanner scanner = new Scanner(new File(Joc.config_directorio, Joc.config_file))) {
+            tamanoLeido = scanner.nextInt();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Assertions.assertEquals(nuevaMida, tamañoLeido);
+        Assertions.assertEquals(novaMida, tamanoLeido);
         // Eliminar el archivo después de la prueba para mantener limpio el entorno de pruebas
-        File archivo = new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE);
+        File archivo = new File(Joc.config_directorio, Joc.config_file);
         archivo.delete();
     }
 
