@@ -1,5 +1,10 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Joc {
     private  int torn;
 
@@ -19,11 +24,25 @@ public class Joc {
         return torn;
     }
 
+    public static final String CONFIG_DIR = "config";
+    public static  final String CONFIG_FILE = "configuracion.txt";
+
     public void novaPartida(){
-        torn = 1;
-        char[][] taulellGenerat = new char[3][3];
-        for(int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        int novaMida =3;
+        try {
+            //para leer el fichero
+            Scanner sc = new Scanner(new File("configuracion.txt"));
+            //leer la variable
+            novaMida= sc.nextInt();
+        }
+        //excepcion
+        catch (Exception var2) {
+        }
+        torn = 1;// Inicializa el turno a 1
+        char[][] taulellGenerat = new char[novaMida][novaMida];// Inicializa el tablero con el nuevo tamaño
+        // Inicializa el tablero con casillas vacías
+        for(int i = 0; i < novaMida; i++) {
+            for (int j = 0; j < novaMida; j++) {
                 taulellGenerat[i][j] = '_';
             }
         }
@@ -34,6 +53,23 @@ public class Joc {
         taulell[fila][columna] =  ficha; //indicar la fila y la columna donde se colocara la fitcha
         torn = ((torn == 1) ? 2 : 1); //pasar al siguente turno
     }
+
+    // Método para guardar la configuración del tamaño del tablero
+    public void guardarConfiguracion(int novaMida) {
+        this.novaMida = novaMida;
+        File file = new File(CONFIG_DIR, CONFIG_FILE);
+        // Crea el directorio si no existe
+        File dir = new File(CONFIG_DIR);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(String.valueOf(novaMida)); // Escribe el tamaño en el archivo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean jugadaGuanyador(int fila,int columna){
 
         char ficha = (torn == 2) ? 'X' : 'O' ;
@@ -59,12 +95,12 @@ public class Joc {
         for(int i = 0; i < taulell.length; i++) {
             for (int j = 0; j < taulell.length; j++) {
                 if(taulell[i][j] == '_'){
-                    lleno = true;
+                    lleno = true;// Si hay al menos una casilla vacía, no hay empate
                     break;
                 }
             }
         }
-        return lleno;
+        return lleno;// Si todas las casillas están ocupadas, hay empate
     }
 
 }

@@ -1,5 +1,6 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.FileWriter;
 import java.util.Scanner;
 public class TUI {
     private Scanner sc = new Scanner(System.in);
@@ -32,29 +33,35 @@ public class TUI {
 
         return validacionCaracter();
     }
-    public void modificarMidaTaulell(){
-        System.out.println("Itrodueix la nova mida del taulell entre 3 i 10:");
-        Scanner sc = new Scanner(System.in);
-        int novaMida = sc.nextInt();
-
-        if (novaMida >=3 && novaMida <= 10){
-            int midaTaulell = novaMida;
-            guardarConfiguracion();
-            System.out.println("Mida el taulell modificada amb exit!!");
+    public void modificarMidaTaulell() {
+        System.out.println("Introdueix la nova mida del taulell entre 3 i 10:");
+        int novaMida = validacionCaracter();
+        // verificar si no se ha introducido un numero entre 3 y 10 se vuelve a imprimir
+        while (novaMida < 3 || novaMida > 10) {
+            System.out.println("Entre 3 y 10.");
+            novaMida = validacionCaracter();
         }
-        else {
-            System.out.println("La nova mida del taulell ha de ser entre 3 i 10.");
+
+        try {
+            //crear un  File que representa el nuevo archivo llamado configuracion.txt
+            FileWriter myWriter = new FileWriter("configuracion.txt");
+            // guardar la variable  dentro del fichero
+            myWriter.write(String.valueOf(novaMida));
+            // cerrar el writer
+            myWriter.close();
+            System.out.println("Configuración guardada correctamente");
+        } catch (Exception e) {
+            System.out.println("se ha ocurrido un error al guardar la jugada ");
+            //excepcion
         }
     }
 
-    public void guardarConfiguracion(){
-        CrearArchivo crearArchivo = new CrearArchivo();
-        crearArchivo.getClass();
-    }
+    //en joc
 
     public void mostrarTaulell(char[][] taulell){
-        for(int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        //poner taulell.length para que imprima  el tablero
+        for(int i = 0; i <taulell.length; i++) {
+            for (int j = 0; j < taulell.length; j++) {
                 System.out.print(taulell[i][j] + " ");
             }
             System.out.println(" ");

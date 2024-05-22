@@ -71,6 +71,7 @@ public class Main {
 
         switch (opcionC) {
             case 1:
+
                 tui.modificarMidaTaulell();
                 break;
             case 2:

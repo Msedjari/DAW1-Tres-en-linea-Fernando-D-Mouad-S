@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Assertions;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,23 +28,28 @@ class JocTest {
         Joc joc = new Joc();
         joc.novaPartida();
 
-        char[][] taulellTest = new char[3][3];
-        for(int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        //obtener el tamaño del nuevo tablero
+        int novaMida = joc.getNovaMida();
+
+        //crear un tablero de prueba con el mismo tamaño y llenarlocon '_'
+        char[][] taulellTest = new char[novaMida][novaMida];
+        for(int i = 0; i < novaMida; i++) {
+            for (int j = 0; j < novaMida; j++) {
                 taulellTest[i][j] = '_';
             }
         }
+        char [][] taulell = joc.getTaulell();
 
         String taulellTestS = Arrays.deepToString(taulellTest);
         String taulellS = Arrays.deepToString(joc.getTaulell());
 
-        Assertions.assertEquals(taulellTestS, taulellS);
+        Assertions.assertEquals(taulellTestS, taulellS,"El tablero se inicializó correctamente");
 
     }
 
     @ParameterizedTest
     @CsvSource({"0,0" , "0,1" , "0,2" ,"1,0" , "1,1" , "1,2" ,"2,0" , "2,1" , "2,2"  })
-    void jugar_1(short fila,int columna) {
+    void jugar1_3(short fila,int columna) {
 
         Joc joc = new Joc();
         joc.novaPartida();
@@ -76,6 +83,109 @@ class JocTest {
    //verificar que la ficha se ha colocado en la primera casilla
         Assertions.assertEquals('O',joc.getTaulell()[fila][columna]);
 
+    }
+    @ParameterizedTest
+    @CsvSource({"0,0", "0,1", "0,2", "0,3", "1,0", "1,1", "1,2", "1,3", "2,0", "2,1", "2,2", "2,3", "3,0", "3,1", "3,2", "3,3"})
+    void jugar1_4(short fila,int columna) {
+
+        Joc joc = new Joc();
+        joc.novaPartida();
+
+        //verificar que la casilla esta vacia antes de jugar
+        // Assertions.assertEquals('_',joc.getTaulell()[fila][columna]);
+
+        //realizar la jugada del J1
+        joc.jugar(fila,columna);
+
+
+
+        //verificar que la ficha se ha colocado en la primera casilla
+        Assertions.assertEquals('X',joc.getTaulell()[fila][columna]);
+
+    }
+    @ParameterizedTest
+    @CsvSource({"0,0", "0,1", "0,2", "0,3", "1,0", "1,1", "1,2", "1,3", "2,0", "2,1", "2,2", "2,3", "3,0", "3,1", "3,2", "3,3" })
+    void jugar2_4(short fila,int columna) {
+
+        Joc joc = new Joc();
+        joc.novaPartida();
+
+        //verificar que la casilla esta vacia antes de jugar
+        Assertions.assertEquals('_',joc.getTaulell()[fila][columna]);
+
+        //realizar la jugada del J1
+        joc.jugar(fila,columna);
+
+        //verificar que la ficha se ha colocado en la primera casilla
+        Assertions.assertEquals('X',joc.getTaulell()[fila][columna]);
+
+        //realizar la jugada del J1
+        joc.jugar(fila,columna);
+
+        //verificar que la ficha se ha colocado en la primera casilla
+        Assertions.assertEquals('O',joc.getTaulell()[fila][columna]);
+
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "0,0", "0,1", "0,2", "0,3", "0,4", "0,5", "0,6", "0,7", "0,8", "0,9",
+            "1,0", "1,1", "1,2", "1,3", "1,4", "1,5", "1,6", "1,7", "1,8", "1,9",
+            "2,0", "2,1", "2,2", "2,3", "2,4", "2,5", "2,6", "2,7", "2,8", "2,9",
+            "3,0", "3,1", "3,2", "3,3", "3,4", "3,5", "3,6", "3,7", "3,8", "3,9",
+            "4,0", "4,1", "4,2", "4,3", "4,4", "4,5", "4,6", "4,7", "4,8", "4,9",
+            "5,0", "5,1", "5,2", "5,3", "5,4", "5,5", "5,6", "5,7", "5,8", "5,9",
+            "6,0", "6,1", "6,2", "6,3", "6,4", "6,5", "6,6", "6,7", "6,8", "6,9",
+            "7,0", "7,1", "7,2", "7,3", "7,4", "7,5", "7,6", "7,7", "7,8", "7,9",
+            "8,0", "8,1", "8,2", "8,3", "8,4", "8,5", "8,6", "8,7", "8,8", "8,9",
+            "9,0", "9,1", "9,2", "9,3", "9,4", "9,5", "9,6", "9,7", "9,8", "9,9"
+    })
+    void jugar1_10(short fila, int columna) {
+        Joc joc = new Joc();
+        //joc.setNovaMida(10);
+        joc.novaPartida();
+
+        // Verificar que la casilla está vacía antes de jugar
+        Assertions.assertEquals('_', joc.getTaulell()[fila][columna]);
+
+        // Realizar la jugada del J1
+        joc.jugar(fila, columna);
+
+        // Verificar que la ficha se ha colocado en la primera casilla
+        Assertions.assertEquals('X', joc.getTaulell()[fila][columna]);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0,0", "0,1", "0,2", "0,3", "0,4", "0,5", "0,6", "0,7", "0,8", "0,9",
+            "1,0", "1,1", "1,2", "1,3", "1,4", "1,5", "1,6", "1,7", "1,8", "1,9",
+            "2,0", "2,1", "2,2", "2,3", "2,4", "2,5", "2,6", "2,7", "2,8", "2,9",
+            "3,0", "3,1", "3,2", "3,3", "3,4", "3,5", "3,6", "3,7", "3,8", "3,9",
+            "4,0", "4,1", "4,2", "4,3", "4,4", "4,5", "4,6", "4,7", "4,8", "4,9",
+            "5,0", "5,1", "5,2", "5,3", "5,4", "5,5", "5,6", "5,7", "5,8", "5,9",
+            "6,0", "6,1", "6,2", "6,3", "6,4", "6,5", "6,6", "6,7", "6,8", "6,9",
+            "7,0", "7,1", "7,2", "7,3", "7,4", "7,5", "7,6", "7,7", "7,8", "7,9",
+            "8,0", "8,1", "8,2", "8,3", "8,4", "8,5", "8,6", "8,7", "8,8", "8,9",
+            "9,0", "9,1", "9,2", "9,3", "9,4", "9,5", "9,6", "9,7", "9,8", "9,9"
+    })
+    void jugar2_10(short fila, int columna) {
+        Joc joc = new Joc();
+        //joc.setNovaMida(10);
+        joc.novaPartida();
+
+        //verificar que la casilla está vacía antes de jugar
+        Assertions.assertEquals('_', joc.getTaulell()[fila][columna]);
+
+        //realizar la jugada del J1
+        joc.jugar(fila, columna);
+
+        //verificar que la ficha del J1 se ha colocado en la casilla
+        Assertions.assertEquals('X', joc.getTaulell()[fila][columna]);
+
+        //realizar la jugada del J2 en otra casilla
+        joc.jugar(fila, columna);
+
+        //verificar que la ficha del J2 se ha colocado en la primera casilla
+        Assertions.assertEquals('O', joc.getTaulell()[fila][columna]);
     }
     @ParameterizedTest
     @CsvSource({"0,0", "0,1", "0,2" , "1,0", "1,1", "1,2", "2,0", "2,1", "2,2"})
@@ -136,15 +246,47 @@ class JocTest {
         //Comprueba
         assertTrue(joc.jugadaGuanyador(2, 2));
     }
-    /*
-    @org.junit.jupiter.api.Test
-    void testTableros(){
+
+    @Test
+    void archivoGenerado() {
         Joc joc = new Joc();
-        for (int novaMida = 3; novaMida<= 10 ; novaMida++){
-            assertEquals(novaMida,joc.getNovaMida());
-        }
+        joc.guardarConfiguracion(5); // Guardar una configuración con un tamaño de 5x5
+        // Verificar que el archivo de configuración se ha generado en el directorio correcto
+        File archivo = new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE);
+        Assertions.assertTrue(archivo.exists());
+        // Eliminar el archivo después de la prueba para mantener limpio el entorno de pruebas
+        archivo.delete();
     }
 
-     */
+    @Test
+    void archivoNoGenerado() {
+        // Probar el caso en que el directorio de configuración no existe
+        Joc joc = new Joc();
+        File dir = new File(Joc.CONFIG_DIR);
+        dir.delete(); // Eliminar el directorio de configuración antes de guardar la configuración
+        joc.guardarConfiguracion(5); // Guardar una configuración con un tamaño de 5x5
+        // Verificar que el archivo de configuración no se ha generado
+        File archivo = new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE);
+        Assertions.assertTrue(archivo.exists());
+    }
+
+    @Test
+    void contenidoCorrecto() {
+        Joc joc = new Joc();
+        int nuevaMida = 7;
+        joc.guardarConfiguracion(nuevaMida); // Guardar una configuración con un tamaño de 7x7
+        // Verificar que el contenido del archivo de configuración es correcto
+        int tamañoLeido = 0;
+        try (Scanner scanner = new Scanner(new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE))) {
+            tamañoLeido = scanner.nextInt();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assertions.assertEquals(nuevaMida, tamañoLeido);
+        // Eliminar el archivo después de la prueba para mantener limpio el entorno de pruebas
+        File archivo = new File(Joc.CONFIG_DIR, Joc.CONFIG_FILE);
+        archivo.delete();
+    }
+
 
 }
