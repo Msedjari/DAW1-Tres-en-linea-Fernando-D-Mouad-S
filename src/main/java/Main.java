@@ -1,6 +1,4 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
@@ -46,7 +44,7 @@ public class Main {
             while (true){
                 tui.mostrarTaulell(joc.getTaulell());
                 int[] jugada = tui.recollirJugada(joc.getTorn());
-                if (jugada[0] == -2 && jugada[1] == -2){ //-2 por como lee el metodo la entrada de datos.
+                if (jugada[0] == -2 && jugada[1] == -2){ ////Para guardar partida, -2 por como lee el metodo la entrada de datos.
                     joc.guardarPartida();
                     tui.seGuarda();
                     start();
@@ -73,7 +71,7 @@ public class Main {
         tui.mostrarPartidasGuardadas(joc.verPartidasGuardadas());
         tui.seleccionaUnaPartida();
         int partidaSeleccionada = tui.partidaParaCargar();
-        if (partidaSeleccionada == -1){
+        if (partidaSeleccionada == -1){ // Para volver atras si no quieres cargar ninguna partida
             start();
         }
         joc.cargarTurnoPartidaGuardada(partidaSeleccionada);
@@ -85,7 +83,7 @@ public class Main {
             while (true){
                 tui.mostrarTaulell(joc.getTaulell());
                 int[] jugada = tui.recollirJugada(joc.getTorn());
-                if (jugada[0] == -2 && jugada[1] == -2){ //-2 por como lee el metodo la entrada de datos.
+                if (jugada[0] == -2 && jugada[1] == -2){ //Para guardar partida, -2 por como lee el metodo la entrada de datos.
                     joc.guardarPartida();
                     tui.seGuarda();
                     start();
