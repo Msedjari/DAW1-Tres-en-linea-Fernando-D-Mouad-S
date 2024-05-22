@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import sun.rmi.runtime.NewThreadAction;
 
 class JocTest {
 
@@ -247,56 +246,7 @@ class JocTest {
         //Comprueba
         assertTrue(joc.jugadaGuanyador(2, 2));
     }
-    @org.junit.jupiter.api.Test
-    public void guardarPartida() throws IOException {
-        Joc joc = new Joc(); //Instancia la clase
-        String nombredirectorio = "savedgame"; //Variable del nombre del directorio
-        File directorio = new File(nombredirectorio); //Instancia la clase
-        if(directorio.isDirectory()) { //Mira si el directorio existe
-        File[] archivos = directorio.listFiles(); //Crea un array de archivos
-            if(archivos != null){ //Si el array no esta vacio
-                for(File archivo : archivos){ //Recorre el array 1 por 1
-                    archivo.delete(); //Elimina el archivo
-                }
-            }
-        }
-        directorio.delete(); //Elimina el directorio
-        joc.novaPartida(); // Lanza la partida
-        //realizar la jugada de J1
-        joc.jugar(0, 0);
-        joc.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
-        assertTrue(directorio.exists()); //comprueba que el directorio existe
-        File[] archivosCreadosAntes = directorio.listFiles(); //Crea un array de archivos.
-        joc.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
-        File[] archivosCreadosDespues = directorio.listFiles(); //Crea un array de archivos.
-        assertTrue(archivosCreadosAntes.length < archivosCreadosDespues.length); //Compara el array de antes de llamar a guarado con el de despues de llamar a guardado.
-    }
-    @org.junit.jupiter.api.Test
-    public void cargarPartida() throws IOException {
-        Joc joc1 = new Joc(); //Instancia la clase joc1
-        joc1.novaPartida(); // Lanza la partida
-        joc1.jugar(0, 0);//realizar la jugada de J1
-        joc1.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
-        String nombredirectorio = "savedgame"; //Variable del nombre del directorio
-        File directorio = new File(nombredirectorio); //Instancia la clase
-        File[] archivos = directorio.listFiles(); //Crea un array de archivos
-        assert archivos != null;
-        int i = archivos.length -1;
-        Joc joc2 = new Joc(); //Instancia la clase joc2
-        joc2.cargarTurnoPartidaGuardada(i); //Llama al metodo para cargar el turno
-        assertEquals(joc1.getTorn(),joc2.getTorn());//compruba que el torn guardado de joc1 es igual al torn cargado en joc2
-        joc2.cargarTaulellPartidaGuardada(i); //Llama al metodo para cargar el tablero
-        boolean resultado = false;
-        for (int a = 0; a < joc1.getTaulell().length; a++){
-            for (int j = 0; j < joc1.getTaulell().length; j++){
-                if (joc1.getTaulell()[a][j] == joc2.getTaulell()[a][j]) {
-                     resultado = true;
-                }
-            }
 
-        }
-        assertTrue(resultado);//compruba que el tablero guardado de joc1 es igual al tablero cargado en joc2
-    }
     @Test
     void archivoGenerado() {
         Joc joc = new Joc();
@@ -336,6 +286,57 @@ class JocTest {
         // Eliminar el archivo después de la prueba para mantener limpio el entorno de pruebas
         File archivo = new File(Joc.config_directorio, Joc.config_file);
         archivo.delete();
+    }
+    @org.junit.jupiter.api.Test
+    public void guardarPartida() throws IOException {
+        Joc joc = new Joc(); //Instancia la clase
+        String nombredirectorio = "savedgame"; //Variable del nombre del directorio
+        File directorio = new File(nombredirectorio); //Instancia la clase
+        if(directorio.isDirectory()) { //Mira si el directorio existe
+        File[] archivos = directorio.listFiles(); //Crea un array de archivos
+            if(archivos != null){ //Si el array no esta vacio
+                for(File archivo : archivos){ //Recorre el array 1 por 1
+                    archivo.delete(); //Elimina el archivo
+                }
+            }
+        }
+        directorio.delete(); //Elimina el directorio
+        joc.novaPartida(); // Lanza la partida
+        //realizar la jugada de J1
+        joc.jugar(0, 0);
+        joc.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
+        assertTrue(directorio.exists()); //comprueba que el directorio existe
+        File[] archivosCreadosAntes = directorio.listFiles(); //Crea un array de archivos.
+        joc.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
+        File[] archivosCreadosDespues = directorio.listFiles(); //Crea un array de archivos.
+
+        assertFalse(archivosCreadosAntes.length < archivosCreadosDespues.length); //Compara el array de antes de llamar a guarado con el de despues de llamar a guardado.
+    }
+    @org.junit.jupiter.api.Test
+    public void cargarPartida() throws IOException {
+        Joc joc1 = new Joc(); //Instancia la clase joc1
+        joc1.novaPartida(); // Lanza la partida
+        joc1.jugar(0, 0);//realizar la jugada de J1
+        joc1.guardarPartida(); //Llama al metodo para crear el guardado (direcorio y archivo.txt)
+        String nombredirectorio = "savedgame"; //Variable del nombre del directorio
+        File directorio = new File(nombredirectorio); //Instancia la clase
+        File[] archivos = directorio.listFiles(); //Crea un array de archivos
+        assert archivos != null;
+        int i = archivos.length;
+        Joc joc2 = new Joc(); //Instancia la clase joc2
+        joc2.cargarTurnoPartidaGuardada(i); //Llama al metodo para cargar el turno
+        assertEquals(joc1.getTorn(),joc2.getTorn());//compruba que el torn guardado de joc1 es igual al torn cargado en joc2
+        joc2.cargarTaulellPartidaGuardada(i); //Llama al metodo para cargar el tablero
+        boolean resultado = false;
+        for (int a = 0; a < joc1.getTaulell().length; a++){
+            for (int j = 0; j < joc1.getTaulell().length; j++){
+                if (joc1.getTaulell()[a][j] == joc2.getTaulell()[a][j]) {
+                     resultado = true;
+                }
+            }
+
+        }
+        assertTrue(resultado);//compruba que el tablero guardado de joc1 es igual al tablero cargado en joc2
     }
 
 
