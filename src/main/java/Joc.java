@@ -1,8 +1,5 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.io.*;
 import java.util.Scanner;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,11 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import java.io.*;
-import java.util.Scanner;
 
 
 public class Joc {
